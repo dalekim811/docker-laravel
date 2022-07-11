@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php-apache-environment:
-    container_name: 'sidebar-api'
+    container_name: 'docker-laravel'
     build: 
       context: ./php/
       dockerfile: Dockerfile
@@ -13,10 +13,10 @@ services:
     ports:
       - 8000:80
     networks:
-      - sidebar-api-network
+      - docker-laravel-network
 
   db:
-    container_name: db
+    container_name: docker-laravel-db
     # platform: linux/x86_64
     # image: mysql:8.0
     image: mariadb:10.5.8
@@ -31,7 +31,7 @@ services:
     ports:
       - "9906:3306"
     networks:
-      - sidebar-api-network
+      - docker-laravel-network
 networks:
-  sidebar-api-network:
+  docker-laravel-network:
     driver: bridge
